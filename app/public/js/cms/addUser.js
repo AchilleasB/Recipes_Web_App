@@ -2,23 +2,23 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     const addUserButton = document.getElementById("add-user-button");
-    
+
     addUserButton.addEventListener("click", function () {
-       
+
         htmlAddUserForm();
 
         const saveUser = document.getElementById("save-user-button");
-            saveUser.addEventListener("click", function (e) {
-                e.preventDefault();
-                saveUserDataToDatabase();
-                loadItems(usersAPIendpoint, "users");
-                addUserFormContainer.innerHTML = null;
+        saveUser.addEventListener("click", function (e) {
+            e.preventDefault();
+            saveUserDataToDatabase();
+            loadItems(usersAPIendpoint, "users");
+            addUserFormContainer.innerHTML = null;
 
         });
 
         const closeUserForm = document.getElementById("close-user-form");
-            closeUserForm.addEventListener("click", function () {
-                 addUserFormContainer.innerHTML = null;
+        closeUserForm.addEventListener("click", function () {
+            addUserFormContainer.innerHTML = null;
         });
 
     })
@@ -52,7 +52,7 @@ function htmlAddUserForm() {
 
 
 async function saveUserDataToDatabase() {
-    await fetch("/api/users", {
+    await fetch("/api/users/addUser", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -67,6 +67,15 @@ async function saveUserDataToDatabase() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
+
+            if (response.JSON === "New user added") {
+                const messageElement = document.getElementById("cmsMessage");
+                messageElement.textContent = response.JSON;
+
+                setTimeout(() => {
+                    messageElement.textContent = "";
+                }, 2000);
+            }
         })
         .catch(error => console.log(error));
 }

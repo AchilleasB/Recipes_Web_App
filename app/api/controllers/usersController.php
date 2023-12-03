@@ -21,6 +21,10 @@ class UsersController
 
         }
 
+        
+    }
+
+    public function addUser(){
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // read JSON from the request, convert it to an user object
@@ -78,7 +82,7 @@ class UsersController
                 echo json_encode(['success' => 'User edited']);
             } else {
                 header('Content-Type: application/json');
-                echo json_encode(['error' => 'User NOT edited']);
+                echo json_encode(['error' => 'Failed to edit user']);
             }
         }
     } 

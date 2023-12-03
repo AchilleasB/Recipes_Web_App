@@ -17,73 +17,64 @@ class FavoritesController
 
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
-            if (isset($_SESSION['user_id'])){
+            if (isset($_SESSION['user_id'])) {
                 $loggedInUserId = $_SESSION['user_id'];
-            }else{
+            } else {
                 $_SESSION['errorMessage'] = 'You need to log in first.';
                 header('Location: /login');
-                exit();  
+                exit();
             }
 
+            // recipe id and user id are fields in favorites database table 
+            // access the favorites data using the user id and get the recipe data using the recipe id
             $favorites = $this->favoriteService->getLoggedInUserFavoriteRecipesId($loggedInUserId);
-            
             $recipes = $this->favoriteService->getUserFavoriteRecipes($favorites);
-            
+
             header('Content-Type: application/json');
             echo json_encode($recipes);
 
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $body = file_get_contents('php://input');
-            $object = json_decode($body);
-
-            if ($object === null && json_last_error() !== JSON_ERROR_NONE) {
-                header('Content-Type: application/json');
-                echo json_encode(['error' => 'Invalid JSON']);
-                return;
-            }
-
-            $favorite = new Favorite();
-            $favorite->setRecipeId(htmlspecialchars($object->recipe_id));
-            $favorite->setUserId(htmlspecialchars($object->user_id));
-
-            $success = $this->favoriteService->addToFavorites($favorite);
-
-            if ($success) {
-                http_response_code(200);
-                echo json_encode(array("message" => "Recipe added to favorites successfully"));
-            } else {
-                http_response_code(500);
-                echo json_encode(array("message" => "Failed to add recipe to favorites"));
-            }
-            
+            $this->handleRequest('POST');
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
-            $body = file_get_contents('php://input');
-            $object = json_decode($body);
-
-            if ($object === null && json_last_error() !== JSON_ERROR_NONE) {
-                header('Content-Type: application/json');
-                echo json_encode(['error' => 'Invalid JSON']);
-                return;
-            }
-
-            $favorite = new Favorite();
-            $favorite->setRecipeId(htmlspecialchars($object->recipe_id));
-            $favorite->setUserId(htmlspecialchars($object->user_id));
-
-            $success = $this->favoriteService->removeFromFavorites($favorite);
-
-            if ($success) {
-                http_response_code(200);
-                echo json_encode(array("message" => "Recipe removed from favorites successfully"));
-            } else {
-                http_response_code(500);
-                echo json_encode(array("message" => "Failed to remove recipe from favorites"));
-            }
+            $this->handleRequest('DELETE');
         }
+    }
+
+    public function handleRequest($request_type)
+    {
+        $body = file_get_contents('php://input');
+        $object = json_decode($body);
+
+        if ($object === null && json_last_error() !== JSON_ERROR_NONE) {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'Invalid JSON']);
+            return;
+        }
+
+        $favorite = $this->setFavorite($object->recipe_id, $object->user_id);
+
+        if ($request_type == 'POST') {
+            $this->favoriteService->addToFavorites($favorite);
+            echo json_encode(['message' => 'Recipe added to favorites']);
+        } 
+        
+        if ($request_type == 'DELETE') {
+            $this->favoriteService->removeFromFavorites($favorite);
+            echo json_encode(['message' => 'Recipe removed from favorites']);
+        }
+    }
+
+    public function setFavorite($recipe_id, $user_id)
+    {
+        $favorite = new Favorite();
+        $favorite->setRecipeId($recipe_id);
+        $favorite->setUserId($user_id);
+
+        return $favorite;
     }
 
 }

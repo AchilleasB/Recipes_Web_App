@@ -21,6 +21,7 @@ include __DIR__ . '/../header.php';
 
 <div class="container">
         <h1 class="header mb-5">Content Management System</h1>
+        <div id="cmsMessage"></div>
         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
             <label class="btn btn-outline-primary" for="btnradio1">Recipes</label>

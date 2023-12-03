@@ -26,7 +26,7 @@
             <div class="container fluid mt-4">
                 <div class="bg-yellow-light ">
                     <div class="home-title">
-                        <h2 class="text-center">Cool recipes created by famous chefs</h2>
+                        <h2 class="text-center">Amazing recipes created by top chefs</h2>
                         <p class="text-center mt-2 mb-5">Delicious dishes to easily cook at home for family and friends
                         </p>
                     </div>

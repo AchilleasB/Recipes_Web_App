@@ -73,7 +73,7 @@ if (isset($_SESSION['user_id'])) {
             </li>
             <?php if ($_SESSION['user_role'] == 'admin') { ?>
               <li class="nav-item">
-                <a class="nav-link" href="/cms"><i class="fa-solid fa-user-crown"></i> CMS</a>
+                <a class="nav-link" href="/cms"><i class="fa-solid fa-clipboard"></i> CMS</a>
               </li>
             <?php } ?>
             <li class="nav-item">
