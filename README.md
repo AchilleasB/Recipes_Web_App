@@ -1,16 +1,16 @@
 # WEB DEVELOPMENT 1 PROJECT
 
-Welcome to the Recipe App, a delightful platform for exploring and managing your awesome recipes. Dive into a world of culinary delights with our diverse recipe categories: Salads, Pasta, Fish, Meat, and Desserts.
+Welcome to the Recipe App, a platform for exploring and managing awesome recipes. Dive into a world of culinary delights with diverse recipe categories: Salads, Pasta, Fish, Meat, and Desserts.
 
 ## Features
 User-Friendly Navigation:
 Easily explore recipes across five categories, making it simple to find the perfect dish for any occasion. Navigate through categories via a dropdown menu in the navigation bar, search for recipes, and build your list of favorites.
 
 Ingredient-Based Search:
-Use the search by ingredient option in the home page to discover recipes that match your preferred ingredients.
+Use the search by ingredient option on the home page to discover recipes that match your preferred ingredients.
 
 User Accounts:
-Sign up and log in to create your own account. Once logged in, you have the ability to save and manage your favorite recipes.
+Sign up and log in to create your account. Once logged in, you can save and manage your favorite recipes.
 
 Favorite Recipes:
 Build and maintain your list of favorite recipes. Add and remove recipes at your convenience. Every recipe card in a category offers the option to be added to your favorites list. The recipe cards that appear in your favorites list offer the option to be removed from it.
@@ -26,7 +26,7 @@ Create, read, update, and delete recipes effortlessly.
 
 User Management:
 Manage user accounts with the ability to create, update, and delete user profiles.
-User passwords is not allowd to be modified.
+User password modification is not permitted.
 
 
 
