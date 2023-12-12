@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,36 +14,49 @@
 </head>
 
 <body>
-<?php
-include __DIR__ . '/../header.php';
-?>
+  <?php
+  include __DIR__ . '/../header.php';
+  ?>
 
-<div class="container">
-        <h1 class="header mb-5">Content Management System</h1>
-        <div id="cmsMessage"></div>
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-            <label class="btn btn-outline-primary" for="btnradio1">Recipes</label>
-
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnradio2">Users</label>
-        </div>
-        <div class="container mt-5 mb-5" id="add-recipe-button">
-        </div>
-        <div class="container mt-5 mb-5" id="add-user-button">
-        </div>
-        <div class="container-lg" id="add-recipe-form-container">
-        </div>
-        <div class="container-lg" id="add-user-form-container">
-        </div>
-        <div class="container-lg" id="items-list">
-        </div>
+  <div class="container">
+    <h1 class="header mb-5">Content Management System</h1>
+    <div id="cmsMessage">
     </div>
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+      <label class="btn btn-outline-primary" for="btnradio1">Recipes</label>
 
-    <script src="/../js/cms/index.js"></script>
-    <script src="/../js/cms/addRecipe.js"></script>
-    <script src="/../js/cms/addUser.js"></script>
-    <script src="/../js/cms/editRecipe.js"></script>
-    <script src="/../js/cms/editUser.js"></script>
-    <script src="/../js/cms/deleteRecipe.js"></script>
-    <script src="/../js/cms/deleteUser.js"></script>
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btnradio2">Users</label>
+    </div>
+    <div class="container mt-5 mb-5" id="add-recipe-button">
+    </div>
+    <div class="container mt-5 mb-5" id="add-user-button">
+    </div>
+    <div class="container-lg" id="add-recipe-form-container">
+    </div>
+    <div class="container-lg" id="add-user-form-container">
+    </div>
+    <div class="container-lg" id="items-list">
+    </div>
+  </div>
+
+  <script src="/../js/cms/index.js"></script>
+  <script src="/../js/cms/addRecipe.js"></script>
+  <script src="/../js/cms/addUser.js"></script>
+  <script src="/../js/cms/editRecipe.js"></script>
+  <script src="/../js/cms/editUser.js"></script>
+  <script src="/../js/cms/deleteRecipe.js"></script>
+  <script src="/../js/cms/deleteUser.js"></script>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const messageElement = document.getElementById("cmsMessage");
+
+      if (messageElement.textContent.trim() !== "") {
+        setTimeout(() => {
+          messageElement.textContent = "";
+        }, 3000);
+      }
+    });
+  </script>

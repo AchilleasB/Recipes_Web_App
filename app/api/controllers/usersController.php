@@ -11,32 +11,39 @@ class UsersController
     }
 
     public function index()
-    { 
+    {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-
-            // return all users in the database as JSON
             $users = $this->userService->getAllUsers();
             header('Content-Type: application/json');
             echo json_encode($users);
-
         }
 
-        
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $this->handleUserRequest('add');
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] == "PUT") {
+            $this->handleUserRequest('edit');
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
+            $this->handleUserRequest('delete');
+        }
+
+
     }
 
-    public function addUser(){
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    public function handleUserRequest($request_type)
+    {
+        $body = file_get_contents('php://input');
+        $object = json_decode($body);
 
-            // read JSON from the request, convert it to an user object
-            $body = file_get_contents('php://input');
-            $object = json_decode($body);
+        if ($object === null && json_last_error() !== JSON_ERROR_NONE) {
+            header('Content-Type: application/json');
+            echo json_encode('Invalid JSON');
+        }
 
-            if($object === null && json_last_error() !== JSON_ERROR_NONE) {
-                header('Content-Type: application/json');
-                echo json_encode(['error' => 'Invalid JSON']);
-                return;
-            }
-
+        if ($request_type == 'add') {
             $user = new User();
             $user->setName(htmlspecialchars($object->name));
             $user->setEmail(htmlspecialchars($object->email));
@@ -46,31 +53,20 @@ class UsersController
             if (!$this->userService->userExists($user->getEmail())) {
                 if ($this->userService->validatePassword($object->password)) {
                     $this->userService->addUser($user);
-                    header('Content-Type: application/json');
-                    echo json_encode(['success' => 'New user added']);
+                    header('Content-Type: application/json', true, 201);
+                    echo json_encode(['message' => $user->getName() . ' was added successfully']);
                 } else {
-                    header('Content-Type: application/json');
-                    echo json_encode(['error' => 'Try another password']);
+                    header('Content-Type: application/json', true, 400);
+                    echo json_encode(['message' => 'Password must be at least 8 characters long']);
                 }
             } else {
-                header('Content-Type: application/json');
-                echo json_encode(['error' => 'User already exists']);
-            }
-        }    
-    }
-
-    public function editUser(){
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $body = file_get_contents('php://input');
-            $object = json_decode($body);
-
-            if($object === null && json_last_error() !== JSON_ERROR_NONE) {
-                header('Content-Type: application/json');
-                echo json_encode(['error' => 'Invalid JSON']);
-                return;
+                header('Content-Type: application/json', true, 400);
+                echo json_encode(['message' => $user->getName() . ' already exists']);
             }
 
+        }
+
+        if ($request_type == 'edit') {
             $user = new User();
             $user->setId(htmlspecialchars($object->id));
             $user->setName(htmlspecialchars($object->name));
@@ -78,21 +74,25 @@ class UsersController
             $user->setRole(htmlspecialchars($object->role));
 
             if ($this->userService->editUser($user)) {
-                header('Content-Type: application/json');
-                echo json_encode(['success' => 'User edited']);
+                header('Content-Type: application/json', true, 200);
+                echo json_encode(['message' => 'User ' . $user->getName() . ' edited successfully']);
             } else {
-                header('Content-Type: application/json');
-                echo json_encode(['error' => 'Failed to edit user']);
+                header('Content-Type: application/json', true, 400);
+                echo json_encode(['message' => $user->getName() . ' was not edited']);
             }
         }
-    } 
 
-    public function deleteUser($user_id){
-        if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
-            $this->userService->deleteUser($user_id);
-            header('Content-Type: application/json');
-            echo json_encode(['success' => 'User deleted']);
+        if ($request_type == 'delete') {
+            $user_id = htmlspecialchars($object->id);
+            if ($this->userService->deleteUser($user_id)) {
+                header('Content-Type: application/json', true, 200);
+                echo json_encode(['message' => $object->name . ' was deleted']);
+            }
+            else {
+                header('Content-Type: application/json', true, 400);
+                echo json_encode(['message' => $object->name . ' was not deleted']);
+            }
         }
     }
-
 }
+?>

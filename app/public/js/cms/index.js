@@ -188,9 +188,9 @@ function createItemElement(item, itemType) {
     const deleteButton = itemElement.querySelector(".delete-item-button");
     deleteButton.addEventListener("click", function () {
         if (itemType === "recipes") {
-            handleDeleteRecipe(item.id);
+            handleDeleteRecipe(item);
         } else if (itemType === "users") {
-            handleDeleteUser(item.id);
+            handleDeleteUser(item);
         }
     });
 

@@ -57,9 +57,8 @@ function handleEditRecipe(recipe) {
     const updateRecipeButton = document.getElementById("update-recipe-button");
 
     updateRecipeButton.addEventListener("click", function (e) {
-        e.preventDefault(); 
+        e.preventDefault();
         updateRecipeData();
-        loadItems(recipesAPIendpoint, "recipes");
         editRecipeContainer.innerHTML = null;
     });
 
@@ -79,15 +78,15 @@ async function updateRecipeData() {
         console.log(key, value);
     });
 
-    await fetch("/api/recipes/editRecipe", {
+    await fetch("/api/recipes", {
         method: "POST",
         body: formData
     })
-        .then(response => {
-            console.log(response);
-        })
+        .then(response => response.json())
         .then(data => {
             console.log(data);
+            itemsListContainer.innerHTML = "";
+            loadItems(recipesAPIendpoint, "recipes");
         })
         .catch(error => console.log(error));
 }

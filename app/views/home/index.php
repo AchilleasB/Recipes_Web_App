@@ -14,12 +14,7 @@
 
 <body>
     <?php
-    // if (!isset($_SESSION['categories'])) {
-    //     $_SESSION['categories'] = array();
-    // }
-    
     include __DIR__ . '/../header.php';
-
     ?>
     <main>
         <div class="container-fluid bg-yellow-light" id="wrapper">

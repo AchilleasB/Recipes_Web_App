@@ -38,7 +38,6 @@ function handleEditUser(user){
     updateUserButton.addEventListener("click", function (e) {
         e.preventDefault();
         updateUserData(user);
-        loadItems(usersAPIendpoint, "users");
         editUserContainer.innerHTML = null;
     });
 
@@ -51,8 +50,8 @@ function handleEditUser(user){
 }
 
 async function updateUserData(user) {
-    await fetch(`/api/users/editUser`, {
-        method: "POST",
+    await fetch(`/api/users`, {
+        method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
@@ -67,6 +66,8 @@ async function updateUserData(user) {
         .then(response => response.json())
         .then(data => {
             console.log(data);
+            itemsListContainer.innerHTML = "";
+            loadItems(usersAPIendpoint, "users");
         })
         .catch(error => console.log(error));
 }

@@ -190,6 +190,24 @@ body .login-container, .signup-container {
     align-items: center;
 }
 
+#cmsMessage {
+   /* show in the middle of the screen on top 
+     of the rest of the content and give opacity to the backround*/
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    background-color: #f2f2f2;
+    border: 2px solid  #eecda3;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 50%;
+    height: 50%;
+    z-index: 1;
+    display: none;
+}
+
 @media screen and (max-width: 990px) {
     .container {
         flex-direction: column;

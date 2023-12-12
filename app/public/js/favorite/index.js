@@ -1,7 +1,6 @@
 import { displayRecipes } from '../recipe/index.js';
 
-
-async function getLoggedInUserFavoriteRecipesFromAPI() {
+async function getLoggedInUserFavoriteRecipes() {
     console.log('Fetching favorites ...');
     const response = await fetch('http://localhost/api/favorites');
     const data = await response.json();
@@ -10,7 +9,7 @@ async function getLoggedInUserFavoriteRecipesFromAPI() {
 
 export async function initializeFavorites() {
     try {
-        const favorites = await getLoggedInUserFavoriteRecipesFromAPI();
+        const favorites = await getLoggedInUserFavoriteRecipes();
         console.log(favorites);
         favorites.forEach(favorite => {
             displayRecipes(favorite);

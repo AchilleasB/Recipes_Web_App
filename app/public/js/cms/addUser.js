@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
         saveUser.addEventListener("click", function (e) {
             e.preventDefault();
             saveUserDataToDatabase();
-            loadItems(usersAPIendpoint, "users");
             addUserFormContainer.innerHTML = null;
 
         });
@@ -52,7 +51,7 @@ function htmlAddUserForm() {
 
 
 async function saveUserDataToDatabase() {
-    await fetch("/api/users/addUser", {
+    await fetch(`/api/users`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -67,19 +66,9 @@ async function saveUserDataToDatabase() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-
-            if (response.JSON === "New user added") {
-                const messageElement = document.getElementById("cmsMessage");
-                messageElement.textContent = response.JSON;
-
-                setTimeout(() => {
-                    messageElement.textContent = "";
-                }, 2000);
-            }
+            itemsListContainer.innerHTML = "";
+            loadItems(usersAPIendpoint, "users");
         })
         .catch(error => console.log(error));
+
 }
-
-
-
-
