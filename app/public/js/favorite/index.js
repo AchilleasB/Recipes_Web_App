@@ -19,8 +19,6 @@ export async function initializeFavorites() {
     }
 }
 
-// document.addEventListener('DOMContentLoaded', initializeFavorites);
-
 export async function addToFavorites(recipeId, loggedInUserId){
 
     await fetch('/api/favorites', {

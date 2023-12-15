@@ -53,17 +53,13 @@ class UsersController
             if (!$this->userService->userExists($user->getEmail())) {
                 if ($this->userService->validatePassword($object->password)) {
                     $this->userService->addUser($user);
-                    header('Content-Type: application/json', true, 201);
-                    echo json_encode(['message' => $user->getName() . ' was added successfully']);
+                    $message = $user->getName() . ' was added successfully';
                 } else {
-                    header('Content-Type: application/json', true, 400);
-                    echo json_encode(['message' => 'Password must be at least 8 characters long']);
+                    $message = 'Password must be at least 8 characters long';
                 }
             } else {
-                header('Content-Type: application/json', true, 400);
-                echo json_encode(['message' => $user->getName() . ' already exists']);
+                $message = $user->getName() . ' already exists';
             }
-
         }
 
         if ($request_type == 'edit') {
@@ -74,25 +70,22 @@ class UsersController
             $user->setRole(htmlspecialchars($object->role));
 
             if ($this->userService->editUser($user)) {
-                header('Content-Type: application/json', true, 200);
-                echo json_encode(['message' => 'User ' . $user->getName() . ' edited successfully']);
+                $message = 'User ' . $user->getName() . ' edited successfully';
             } else {
-                header('Content-Type: application/json', true, 400);
-                echo json_encode(['message' => $user->getName() . ' was not edited']);
+                $message = $user->getName() . ' was not edited';
             }
         }
 
         if ($request_type == 'delete') {
-            $user_id = htmlspecialchars($object->id);
-            if ($this->userService->deleteUser($user_id)) {
-                header('Content-Type: application/json', true, 200);
-                echo json_encode(['message' => $object->name . ' was deleted']);
-            }
-            else {
-                header('Content-Type: application/json', true, 400);
-                echo json_encode(['message' => $object->name . ' was not deleted']);
+            if ($this->userService->deleteUser($object->id)) {
+                $message = $object->name . ' was deleted';
+            } else {
+                $message = $object->name . ' was not deleted';
             }
         }
+
+        header('Content-Type: application/json');
+        echo json_encode(['message' => $message]);
     }
 }
 ?>

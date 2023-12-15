@@ -18,12 +18,12 @@ function initializePageByCategory() {
             loadRecipesByCategory(4)
         } else if (page === 'Desserts') {
             loadRecipesByCategory(5)
-        } else if (page === 'favorites'){
-            initializeFavorites();   
-        }else {
+        } else if (page === 'favorites') {
+            initializeFavorites();
+        } else {
             console.log('Page not found');
         }
-        
+
     } catch (error) {
         console.error('Error initializing:', error);
     }
@@ -74,7 +74,7 @@ export function displayRecipes(recipes) {
 
 }
 
-function getPageFromURL(){
+function getPageFromURL() {
     const url = window.location.href;
     const urlParts = url.split('/');
     const page = urlParts[urlParts.length - 1];
@@ -84,7 +84,7 @@ function getPageFromURL(){
 export function generateRecipeCard(recipe) {
 
     const cardContainer = document.createElement('div');
-    cardContainer.classList.add('recipe-card', 'h-50', 'w-100', 'mb-3', 'shadow-sm','p-5');
+    cardContainer.classList.add('recipe-card', 'h-50', 'w-100', 'mb-3', 'shadow-sm', 'p-5');
 
     const cardBody = document.createElement('div');
     cardBody.classList.add('recipe-card-body', 'd-flex', 'align-items-center', 'justify-content-between');
@@ -100,19 +100,19 @@ export function generateRecipeCard(recipe) {
 
 }
 
-function htmlRecipeCardImage(recipe){
+function htmlRecipeCardImage(recipe) {
     const cardImage = document.createElement('div');
     const image = document.createElement('img');
-    cardImage.classList.add('card-image','col-md-5');
+    cardImage.classList.add('card-image', 'col-md-5');
     image.classList.add('w-100', 'h-100', 'object-fit-cover');
     image.src = recipe.image_path;
     cardImage.appendChild(image);
     return cardImage;
 }
 
-function htmlRecipeCardDetails(recipe){
+function htmlRecipeCardDetails(recipe) {
     const cardDetails = document.createElement('div');
-    cardDetails.classList.add('card-details','w-50', 'px-3');
+    cardDetails.classList.add('card-details', 'w-50', 'px-3');
 
     const cardTitle = htmlRecipeTitle(recipe);
     cardDetails.appendChild(cardTitle);
@@ -138,17 +138,20 @@ function htmlRecipeCardDetails(recipe){
         console.log('Recipe object: ', recipe);
         console.log('Recipe id: ', recipe.id);
 
-        if(loggedInUserId !== null){
-            if(page == 'favorites'){
+        if (loggedInUserId !== null) {
+            if (page == 'favorites') {
                 removeFromFavorites(recipe.id, loggedInUserId);
-                window.location.href = 'http://localhost/recipe/favorites';
-            }else{
+            } else {
                 addToFavorites(recipe.id, loggedInUserId);
-                window.location.reload();
             }
-        } else{
+
+            const recipesList = document.getElementById('recipes');
+            recipesList.innerHTML = '';
+            initializePageByCategory();
+            
+        } else {
             alert('Please log in to add to favorites');
-            winndow.location.href = 'http://localhost/login';
+            window.location.href = 'http://localhost/login';
         }
     });
 
@@ -156,7 +159,7 @@ function htmlRecipeCardDetails(recipe){
 }
 
 
-function htmlRecipeTitle(recipe){
+function htmlRecipeTitle(recipe) {
     const cardTitle = document.createElement('h5');
     cardTitle.classList.add('card-title', 'mb-5');
     cardTitle.innerHTML = recipe.title;
@@ -164,7 +167,7 @@ function htmlRecipeTitle(recipe){
     return cardTitle;
 }
 
-function htmlRecipeIngredients(recipe){
+function htmlRecipeIngredients(recipe) {
     const ingredientsSection = document.createElement('div');
 
     const cardIngredientsTitle = document.createElement('h6');
@@ -181,7 +184,7 @@ function htmlRecipeIngredients(recipe){
     return ingredientsSection;
 }
 
-function htmlRecipeInstructions(recipe){
+function htmlRecipeInstructions(recipe) {
 
     const instructionsSection = document.createElement('div');
 
@@ -199,7 +202,7 @@ function htmlRecipeInstructions(recipe){
     return instructionsSection;
 }
 
-function htmlRecipePrepTime(recipe){
+function htmlRecipePrepTime(recipe) {
     const prepTimeSection = document.createElement('div');
 
     const cardPrepTimeTitle = document.createElement('h6');
@@ -216,7 +219,7 @@ function htmlRecipePrepTime(recipe){
     return prepTimeSection;
 }
 
-function htmlRecipeCreator(recipe){  
+function htmlRecipeCreator(recipe) {
     const creatorSection = document.createElement('div');
 
     const cardCreatorTitle = document.createElement('h6');
@@ -233,17 +236,17 @@ function htmlRecipeCreator(recipe){
     return creatorSection;
 }
 
-function htmlAddToOrRemoveFromFavoritesButton(){
+function htmlAddToOrRemoveFromFavoritesButton() {
     const addToOrRemoveFromFavoritesButton = document.createElement('button');
-    if(page == 'favorites'){
+    if (page == 'favorites') {
         addToOrRemoveFromFavoritesButton.classList.add('btn', 'btn-danger', 'mt-3');
         addToOrRemoveFromFavoritesButton.innerHTML = 'Remove from Favorites';
     } else {
         addToOrRemoveFromFavoritesButton.classList.add('btn', 'btn-primary', 'mt-3');
         addToOrRemoveFromFavoritesButton.innerHTML = 'Add to Favorites';
     }
-    
-    return addToOrRemoveFromFavoritesButton;   
+
+    return addToOrRemoveFromFavoritesButton;
 }
 
 

@@ -9,6 +9,7 @@ class UserService
     function __construct()
     {
         $this->userRepository = new UserRepository();
+
     }
 
     public function signup(User $user)
@@ -39,10 +40,11 @@ class UserService
 
     public function deleteUser($id)
     {
+        $this->userRepository->deleteFavoritesByUserId($id);
         return $this->userRepository->deleteUser($id);
     }
 
-    
+
     function userExists($email)
     {
         $existingUser = $this->getUserByEmail($email);
@@ -56,7 +58,7 @@ class UserService
     function create_user($name, $email, $password)
     {
         $user = new User();
-        $user->setName($name);  
+        $user->setName($name);
         $user->setEmail($email);
         $user->setPassword(password_hash($password, PASSWORD_DEFAULT));
         $user->setRole(User::USER);

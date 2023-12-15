@@ -29,7 +29,7 @@ class RecipesController
             $image_path = isset($_POST['image_path']) ? htmlspecialchars($_POST['image_path']) : '';
             $category_id = isset($_POST['category_id']) ? (int) $_POST['category_id'] : 0;
 
-            if (!empty($_FILES['image'])) {
+            if (!empty($_FILES['image']['name'])) {
                 $uploadedImage = $_FILES['image'];
                 $image_path = '/../images/' . basename($uploadedImage['name']);
                 move_uploaded_file($uploadedImage['tmp_name'], 'images/' . $uploadedImage['name']);
@@ -47,21 +47,21 @@ class RecipesController
 
             if ($id === 0) {
                 if ($this->recipeService->addRecipe($recipe)) {
-                    header('Content-Type: application/json', true, 201);
-                    echo json_encode(['message' => $recipe->getTitle() . ' was added successfully']);
+                    $message = $recipe->getTitle() . ' was added successfully';
                 } else {
-                    header('Content-Type: application/json', true, 400);
-                    echo json_encode(['message' => $recipe->getTitle() . ' was not added']);
+                    $message = $recipe->getTitle() . ' was not added';
                 }
             } else {
                 if ($this->recipeService->editRecipe($recipe)) {
-                    header('Content-Type: application/json', true, 200);
-                    echo json_encode(['message' => $recipe->getTitle() . ' was updated successfully']);
+                    $message = $recipe->getTitle() . ' was updated successfully';
                 } else {
-                    header('Content-Type: application/json', true, 400);
-                    echo json_encode(['message' => $recipe->getTitle() . ' was not updated']);
+                    $message = $recipe->getTitle() . ' was not updated';
                 }
             }
+
+            header('Content-Type: application/json');
+            echo json_encode(['message' => $message]);
+
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
@@ -69,12 +69,13 @@ class RecipesController
             $object = json_decode($body);
 
             if ($this->recipeService->deleteRecipe($object->id)) {
-                header('Content-Type: application/json', true, 200);
-                echo json_encode(['message' => $object->title . ' was deleted']);
+                $message = $object->title . ' was deleted';
             } else {
-                header('Content-Type: application/json', true, 400);
-                echo json_encode(['message' => $object->title . ' was not deleted']);
+                $message = $object->title . ' was not deleted';
             }
+
+            header('Content-Type: application/json');
+            echo json_encode(['message' => $message]);
         }
     }
 

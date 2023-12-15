@@ -50,7 +50,7 @@ function handleEditUser(user){
 }
 
 async function updateUserData(user) {
-    await fetch(`/api/users`, {
+    const response = await fetch(`/api/users`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -62,12 +62,10 @@ async function updateUserData(user) {
             password: document.getElementById("edit-user-password").value,
             role: document.getElementById("edit-user-role").value
         })
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            itemsListContainer.innerHTML = "";
-            loadItems(usersAPIendpoint, "users");
-        })
-        .catch(error => console.log(error));
+    });
+
+    const data = await response.json();
+    console.log(data);
+    itemsListContainer.innerHTML = "";
+    loadItems(usersAPIendpoint, "users");
 }

@@ -84,6 +84,20 @@ class UserRepository extends Repository
             echo $e;
         }
     }
+
+    public function deleteFavoritesByUserId($user_id){
+        try {
+            $stmt = $this->connection->prepare("DELETE FROM favorites WHERE user_id = :user_id");
+            $stmt->execute([
+                'user_id' => $user_id
+            ]);
+
+            return true;
+
+        } catch (PDOException $e) {
+            echo $e;
+        }
+    }
   
 }
 

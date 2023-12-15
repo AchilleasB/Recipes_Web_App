@@ -1,5 +1,5 @@
 async function handleDeleteUser(item) {
-    await fetch(`/api/users`, {
+    const response = await fetch(`/api/users`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -8,12 +8,10 @@ async function handleDeleteUser(item) {
             id: item.id,
             name: item.name
         })
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            itemsListContainer.innerHTML = "";
-            loadItems(usersAPIendpoint, "users");
-        })
-        .catch(error => console.log(error));
+    });
+
+    const data = await response.json();
+    console.log(data);
+    itemsListContainer.innerHTML = "";
+    loadItems(usersAPIendpoint, "users");
 }

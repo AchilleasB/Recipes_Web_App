@@ -39,7 +39,6 @@ function handleEditRecipe(recipe) {
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
                     <select class="form-select" id="category" name="category_id"  required>
-                        <option value="" disabled selected>${getCategory(recipe.category_id)}</option>
                         <option value="1" ${recipe.$category_id === 1 ? 'selected' : ''}>Salads</option>
                         <option value="2" ${recipe.$category_id === 2 ? 'selected' : ''}>Pasta</option>
                         <option value="3" ${recipe.$category_id === 3 ? 'selected' : ''}>Fish</option>
@@ -78,33 +77,13 @@ async function updateRecipeData() {
         console.log(key, value);
     });
 
-    await fetch("/api/recipes", {
+    const response = await fetch("/api/recipes", {
         method: "POST",
         body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            itemsListContainer.innerHTML = "";
-            loadItems(recipesAPIendpoint, "recipes");
-        })
-        .catch(error => console.log(error));
-}
+    });
 
-function getCategory($category_id) {
-
-    switch ($category_id) {
-        case 1:
-            return "Salads";
-        case 2:
-            return "Pasta";
-        case 3:
-            return "Fish";
-        case 4:
-            return "Meat";
-        case 5:
-            return "Desserts";
-        default:
-            return "Not defined";
-    }
+    const data = await response.json();
+    console.log(data);
+    itemsListContainer.innerHTML = "";
+    loadItems(recipesAPIendpoint, "recipes");
 }
