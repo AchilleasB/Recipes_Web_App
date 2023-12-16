@@ -60,7 +60,7 @@ class RecipesController
             }
 
             header('Content-Type: application/json');
-            echo json_encode(['message' => $message]);
+            echo json_encode(['message' => $message, 'recipe' => $recipe]);
 
         }
 
@@ -75,7 +75,7 @@ class RecipesController
             }
 
             header('Content-Type: application/json');
-            echo json_encode(['message' => $message]);
+            echo json_encode(['message' => $message, 'recipe' => $object]);
         }
     }
 

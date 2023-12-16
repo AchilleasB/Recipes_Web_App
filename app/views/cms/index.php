@@ -52,7 +52,6 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const messageElement = document.getElementById("cmsMessage");
-
       if (messageElement.textContent.trim() !== "") {
         setTimeout(() => {
           messageElement.textContent = "";

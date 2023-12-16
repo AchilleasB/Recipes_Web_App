@@ -74,13 +74,13 @@ function htmlAddRecipeForm() {
 async function saveRecipeDataToDatabase() {
     const formData = new FormData(document.getElementById("add-recipe-form"));
 
-    const response = await fetch("/api/recipes", {
+    const request = await fetch("/api/recipes", {
         method: "POST",
         body: formData
     });
 
-    const data = await response.json();
-    console.log(data);
+    const response = await request.json();
+    console.log(response);
     itemsListContainer.innerHTML = "";
     loadItems(recipesAPIendpoint, "recipes");
 }

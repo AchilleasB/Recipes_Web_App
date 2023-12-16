@@ -70,9 +70,9 @@ class UsersController
             $user->setRole(htmlspecialchars($object->role));
 
             if ($this->userService->editUser($user)) {
-                $message = 'User ' . $user->getName() . ' edited successfully';
+                $message = $user->getName() . ' was updated successfully';
             } else {
-                $message = $user->getName() . ' was not edited';
+                $message = $user->getName() . ' was not updated';
             }
         }
 
@@ -85,7 +85,7 @@ class UsersController
         }
 
         header('Content-Type: application/json');
-        echo json_encode(['message' => $message]);
+        echo json_encode(['message' => $message, 'user' => $object]);
     }
 }
 ?>
