@@ -51,7 +51,7 @@ function htmlAddUserForm() {
 
 
 async function saveUserDataToDatabase() {
-    const request = await fetch(`/api/users`, {
+    const response = await fetch(`/api/users`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -64,8 +64,9 @@ async function saveUserDataToDatabase() {
         })
     });
     
-    const response = await request.json();
-    console.log(response);
+    const data = await response.json();
+    console.log(data);
+    displayMessage(data.message, 3000);
     itemsListContainer.innerHTML = "";
     loadItems(usersAPIendpoint, "users");
 }

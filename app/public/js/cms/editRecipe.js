@@ -77,13 +77,14 @@ async function updateRecipeData() {
         console.log(key, value);
     });
 
-    const request = await fetch("/api/recipes", {
+    const response = await fetch("/api/recipes", {
         method: "POST",
         body: formData
     });
 
-    const response = await request.json();
-    console.log(response);
+    const data = await response.json();
+    console.log(data);
+    displayMessage(data.message, 3000);
     itemsListContainer.innerHTML = "";
     loadItems(recipesAPIendpoint, "recipes");
 }

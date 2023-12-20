@@ -11,48 +11,49 @@ const addUserFormContainer = document.getElementById("add-user-form-container")
 
 
 document.addEventListener("DOMContentLoaded", function () {
-   
-    recipesRadioButtons.addEventListener("click", function () {
-        loadItems(recipesAPIendpoint, "recipes");
-        htmlAddRecipeButton();
-        addUserButtonContainer.innerHTML = null;
-        addUserFormContainer.innerHTML = null;
-        addRecipeFormContainer.innerHTML = null;
-
-    });
-
-    usersRadioButtons.addEventListener("click", function () {
-        loadItems(usersAPIendpoint, "users");
-        htmlAddUserButton();
-        addRecipeButtonContainer.innerHTML = null;
-        addRecipeFormContainer.innerHTML = null;
-        addUserFormContainer.innerHTML = null;
-
-    });
-
     loadItems(recipesAPIendpoint, "recipes");
     htmlAddRecipeButton();
 
 });
 
-function loadItems(apiEndpoint, itemType) {
+recipesRadioButtons.addEventListener("click", function () {
+    loadItems(recipesAPIendpoint, "recipes");
+    htmlAddRecipeButton();
+    addUserButtonContainer.innerHTML = null;
+    addUserFormContainer.innerHTML = null;
+    addRecipeFormContainer.innerHTML = null;
+
+});
+
+usersRadioButtons.addEventListener("click", function () {
+    loadItems(usersAPIendpoint, "users");
+    htmlAddUserButton();
+    addRecipeButtonContainer.innerHTML = null;
+    addRecipeFormContainer.innerHTML = null;
+    addUserFormContainer.innerHTML = null;
+
+});
+
+async function loadItems(apiEndpoint, itemType) {
     itemsListContainer.innerHTML = "";
 
     const itemsLabel = createItemLabel(itemType);
     const itemList = document.createElement("div");
 
-    fetch(apiEndpoint)
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(item => {
-                const itemElement = createItemElement(item, itemType);
-                itemList.appendChild(itemElement);
-            });
+    try {
+        const response = await fetch(apiEndpoint);
+        const data = await response.json();
+        data.forEach(item => {
+            const itemElement = createItemElement(item, itemType);
+            itemList.appendChild(itemElement);
+        });
 
-            itemsListContainer.appendChild(itemsLabel);
-            itemsListContainer.appendChild(itemList);
-        })
-        .catch(error => console.log(error));
+        itemsListContainer.appendChild(itemsLabel);
+        itemsListContainer.appendChild(itemList);
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 
 function htmlAddRecipeButton() {
@@ -212,4 +213,23 @@ function htmlGenerateButtons() {
             </div>
         </div>
     `;
+}
+
+function displayMessage(message, duration){
+    const messageContainer = document.createElement("div");
+    messageContainer.style.position = "fixed";
+    messageContainer.style.top = "50%";
+    messageContainer.style.left = "50%";
+    messageContainer.style.transform = "translate(-50%, -50%)";
+    messageContainer.style.background = "rgba(0, 0, 0, 0.7)";
+    messageContainer.style.color = "white";
+    messageContainer.style.padding = "10px";
+    messageContainer.style.borderRadius = "5px";
+    messageContainer.innerText = message;
+
+    document.body.appendChild(messageContainer);
+
+    setTimeout(() => {
+        document.body.removeChild(messageContainer);
+    }, duration);
 }

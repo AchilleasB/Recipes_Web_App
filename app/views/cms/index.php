@@ -20,8 +20,6 @@
 
   <div class="container">
     <h1 class="header mb-5">Content Management System</h1>
-    <div id="cmsMessage">
-    </div>
     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
       <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
       <label class="btn btn-outline-primary" for="btnradio1">Recipes</label>
@@ -49,13 +47,3 @@
   <script src="/../js/cms/deleteRecipe.js"></script>
   <script src="/../js/cms/deleteUser.js"></script>
   
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const messageElement = document.getElementById("cmsMessage");
-      if (messageElement.textContent.trim() !== "") {
-        setTimeout(() => {
-          messageElement.textContent = "";
-        }, 3000);
-      }
-    });
-  </script>
