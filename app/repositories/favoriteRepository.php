@@ -84,4 +84,26 @@ class FavoriteRepository extends Repository
             echo $e;
         }
     }
+
+    public function existsInFavorites(Favorite $favorite){
+        try {
+            $stmt = $this->connection->prepare("SELECT * FROM favorites WHERE user_id = :user_id AND recipe_id = :recipe_id");
+            $stmt->execute([
+                'user_id' => $favorite->getUserId(),
+                'recipe_id' => $favorite->getRecipeId()
+            ]);
+
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Favorite');
+            $favorite = $stmt->fetch();
+
+            if($favorite){
+                return true;
+            }else{
+                return false;
+            }
+
+        } catch (PDOException $e) {
+            echo $e;
+        }
+    }
 }

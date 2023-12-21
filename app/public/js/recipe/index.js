@@ -81,63 +81,42 @@ function getPageFromURL() {
     return page;
 }
 
+
 export function generateRecipeCard(recipe) {
 
     const cardContainer = document.createElement('div');
-    cardContainer.classList.add('recipe-card', 'h-50', 'w-100', 'mb-3', 'shadow-sm', 'p-5');
+    cardContainer.classList.add('recipe-card', 'd-flex', 'justify-content-center', 'my-4', 'mx-3', 'p-4', 'border', 'rounded');
 
-    const cardBody = document.createElement('div');
-    cardBody.classList.add('recipe-card-body', 'd-flex', 'align-items-center', 'justify-content-between');
+    const leftContainer = document.createElement('div');
+    leftContainer.classList.add('left-container', 'col-md-5', 'mr-4', 'm-auto');
 
-    const cardImage = htmlRecipeCardImage(recipe);
-    const cardDetails = htmlRecipeCardDetails(recipe);
-
-    cardBody.appendChild(cardImage);
-    cardBody.appendChild(cardDetails);
-    cardContainer.appendChild(cardBody);
-
-    return cardContainer;
-
-}
-
-function htmlRecipeCardImage(recipe) {
-    const cardImage = document.createElement('div');
     const image = document.createElement('img');
-    cardImage.classList.add('card-image', 'col-md-5');
     image.classList.add('w-100', 'h-100', 'object-fit-cover');
     image.src = recipe.image_path;
-    cardImage.appendChild(image);
-    return cardImage;
-}
+    leftContainer.appendChild(image);
 
-function htmlRecipeCardDetails(recipe) {
-    const cardDetails = document.createElement('div');
-    cardDetails.classList.add('card-details', 'w-50', 'px-3');
+    const rightContainer = document.createElement('div');
+    rightContainer.classList.add('right-container', 'w-50', 'px-3', 'm-auto');
 
     const cardTitle = htmlRecipeTitle(recipe);
-    cardDetails.appendChild(cardTitle);
+    rightContainer.appendChild(cardTitle);
 
     const cardIngredients = htmlRecipeIngredients(recipe);
-    cardDetails.appendChild(cardIngredients);
+    rightContainer.appendChild(cardIngredients);
 
     const cardInstructions = htmlRecipeInstructions(recipe);
-    cardDetails.appendChild(cardInstructions);
+    rightContainer.appendChild(cardInstructions);
 
     const cardPrepTime = htmlRecipePrepTime(recipe);
-    cardDetails.appendChild(cardPrepTime);
+    rightContainer.appendChild(cardPrepTime);
 
     const cardCreator = htmlRecipeCreator(recipe);
-    cardDetails.appendChild(cardCreator);
+    rightContainer.appendChild(cardCreator);
 
     const addToOrRemoveFromFavoritesButton = htmlAddToOrRemoveFromFavoritesButton();
-    cardDetails.appendChild(addToOrRemoveFromFavoritesButton);
+    rightContainer.appendChild(addToOrRemoveFromFavoritesButton);
 
     addToOrRemoveFromFavoritesButton.addEventListener('click', () => {
-
-        console.log('User id: ', loggedInUserId);
-        console.log('Recipe object: ', recipe);
-        console.log('Recipe id: ', recipe.id);
-
         if (loggedInUserId !== null) {
             if (page == 'favorites') {
                 removeFromFavorites(recipe.id, loggedInUserId);
@@ -148,16 +127,19 @@ function htmlRecipeCardDetails(recipe) {
             const recipesList = document.getElementById('recipes');
             recipesList.innerHTML = '';
             initializePageByCategory();
-            
+
         } else {
             alert('Please log in to add to favorites');
             window.location.href = 'http://localhost/login';
         }
     });
 
-    return cardDetails;
-}
+    cardContainer.appendChild(leftContainer);
+    cardContainer.appendChild(rightContainer);
 
+    return cardContainer;
+
+}
 
 function htmlRecipeTitle(recipe) {
     const cardTitle = document.createElement('h5');
@@ -169,6 +151,7 @@ function htmlRecipeTitle(recipe) {
 
 function htmlRecipeIngredients(recipe) {
     const ingredientsSection = document.createElement('div');
+    ingredientsSection.classList.add('d-flex', 'flex-column', 'align-items-center', 'w-50', 'm-auto');
 
     const cardIngredientsTitle = document.createElement('h6');
     cardIngredientsTitle.classList.add('ingredients-title', 'mt-3', 'border-bottom');
@@ -185,8 +168,8 @@ function htmlRecipeIngredients(recipe) {
 }
 
 function htmlRecipeInstructions(recipe) {
-
     const instructionsSection = document.createElement('div');
+    instructionsSection.classList.add('d-flex', 'flex-column', 'align-items-center', 'w-50', 'm-auto');
 
     const cardInstructionsTitle = document.createElement('h6');
     cardInstructionsTitle.classList.add('instructions-title', 'mt-3', 'border-bottom');
@@ -204,6 +187,7 @@ function htmlRecipeInstructions(recipe) {
 
 function htmlRecipePrepTime(recipe) {
     const prepTimeSection = document.createElement('div');
+    prepTimeSection.classList.add('d-flex', 'flex-column', 'align-items-center');
 
     const cardPrepTimeTitle = document.createElement('h6');
     cardPrepTimeTitle.classList.add('preptime-title', 'mt-3', 'border-bottom');
@@ -221,6 +205,7 @@ function htmlRecipePrepTime(recipe) {
 
 function htmlRecipeCreator(recipe) {
     const creatorSection = document.createElement('div');
+    creatorSection.classList.add('d-flex', 'flex-column', 'align-items-center');
 
     const cardCreatorTitle = document.createElement('h6');
     cardCreatorTitle.classList.add('creator-title', 'mt-3', 'border-bottom');
@@ -238,6 +223,8 @@ function htmlRecipeCreator(recipe) {
 
 function htmlAddToOrRemoveFromFavoritesButton() {
     const addToOrRemoveFromFavoritesButton = document.createElement('button');
+    addToOrRemoveFromFavoritesButton.classList.add('d-flex', 'flex-column', 'align-items-center', 'm-auto', 'w-');
+
     if (page == 'favorites') {
         addToOrRemoveFromFavoritesButton.classList.add('btn', 'btn-danger', 'mt-3');
         addToOrRemoveFromFavoritesButton.innerHTML = 'Remove from Favorites';

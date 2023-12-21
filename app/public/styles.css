@@ -3,11 +3,16 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
     font-family: 'Roboto', sans-serif;
     background-color: #f2f2f2;
-    position: relative;
+}
+
+main {
+    flex: 1;
 }
 
 nav {
@@ -131,11 +136,9 @@ nav {
 }
 
 footer {
-    position: relative;
-    bottom: 0;
-    left: 0;
+    
+    box-sizing: border-box;
     width: 100%;
-    margin-top: 100px;
     background: linear-gradient(to right, #a770ef, #cf8bf3, #FDB99B);
 }
 
@@ -190,23 +193,6 @@ body .login-container, .signup-container {
     align-items: center;
 }
 
-#cmsMessage {
-   /* show in the middle of the screen on top 
-     of the rest of the content and give opacity to the backround*/
-    position: fixed;
-    top: 30%;
-    left: 30%;
-    transform: translate(-50%, -50%);
-    background-color: #f2f2f2;
-    border: 2px solid  #eecda3;
-    border-radius: 5px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    width: 50%;
-    height: 50%;
-    z-index: 1;
-    display: none;
-}
 
 @media screen and (max-width: 990px) {
     .container {
@@ -221,8 +207,6 @@ body .login-container, .signup-container {
 
     .nav-item {
         font-size: 1.1rem;
-        /* display: flex ;
-        justify-content: center; */
 
     }
 

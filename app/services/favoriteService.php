@@ -11,24 +11,27 @@ class FavoriteService
         $this->favoriteRepository = new FavoriteRepository();
     }
 
-    public function getAllFavoriteRecipesData(){
+    public function getAllFavoriteRecipesData()
+    {
         return $this->favoriteRepository->getAllFavoriteRecipesData();
     }
 
-    public function getLoggedInUserFavoriteRecipesId($loggedInUserId){
+    public function getLoggedInUserFavoriteRecipesId($loggedInUserId)
+    {
         return $this->favoriteRepository->getLoggedInUserFavoriteRecipesId($loggedInUserId);
     }
 
-    public function getUserFavoriteRecipes($favorites){
+    public function getUserFavoriteRecipes($favorites)
+    {
         $recipes = array();
-            foreach ($favorites as $favorite){
-                $recipeId = $favorite->getRecipeId();
-                $recipe = $this->favoriteRepository->getFavoriteRecipe($recipeId);
-                if ($recipe){
-                    array_push($recipes, $recipe);
-                }
+        foreach ($favorites as $favorite) {
+            $recipeId = $favorite->getRecipeId();
+            $recipe = $this->favoriteRepository->getFavoriteRecipe($recipeId);
+            if ($recipe) {
+                array_push($recipes, $recipe);
             }
-            return $recipes;
+        }
+        return $recipes;
     }
 
     public function addToFavorites($favorite)
@@ -40,4 +43,10 @@ class FavoriteService
     {
         return $this->favoriteRepository->removeFromFavorites($favorite);
     }
+
+    public function existsInFavorites($favorite)
+    {
+        return $this->favoriteRepository->existsInFavorites($favorite);
+    }
 }
+

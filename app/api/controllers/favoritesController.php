@@ -55,26 +55,25 @@ class FavoritesController
             return;
         }
 
-        $favorite = $this->setFavorite($object->recipe_id, $object->user_id);
+        $favorite = new Favorite();
+        $favorite->setRecipeId($object->recipe_id);
+        $favorite->setUserId($object->user_id);
 
         if ($request_type == 'POST') {
-            $this->favoriteService->addToFavorites($favorite);
-            echo json_encode(['message' => 'Recipe added to favorites']);
-        } 
-        
+            if (!$this->favoriteService->existsInFavorites($favorite)) {
+                $this->favoriteService->addToFavorites($favorite);
+                $message = 'Recipe was added to favorites';
+            }else{
+                $message = 'Recipe already exists in favorites';
+            }
+        }
+
         if ($request_type == 'DELETE') {
             $this->favoriteService->removeFromFavorites($favorite);
-            echo json_encode(['message' => 'Recipe removed from favorites']);
+            $message = 'Recipe was removed from favorites';
         }
-    }
-
-    public function setFavorite($recipe_id, $user_id)
-    {
-        $favorite = new Favorite();
-        $favorite->setRecipeId($recipe_id);
-        $favorite->setUserId($user_id);
-
-        return $favorite;
+        header('Content-Type: application/json');
+        echo json_encode(['message' => $message ]);
     }
 
 }

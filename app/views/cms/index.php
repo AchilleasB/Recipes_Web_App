@@ -17,26 +17,30 @@
   <?php
   include __DIR__ . '/../header.php';
   ?>
+  <main>
+    <div class="container">
+      <h1 class="header mb-5">Content Management System</h1>
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="btnradio1">Recipes</label>
 
-  <div class="container">
-    <h1 class="header mb-5">Content Management System</h1>
-    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-      <label class="btn btn-outline-primary" for="btnradio1">Recipes</label>
-
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-      <label class="btn btn-outline-primary" for="btnradio2">Users</label>
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btnradio2">Users</label>
+      </div>
+      <div class="container mt-5 mb-5" id="add-recipe-button">
+      </div>
+      <div class="container mt-5 mb-5" id="add-user-button">
+      </div>
+      <div class="container-lg" id="add-recipe-form-container">
+      </div>
+      <div class="container-lg" id="add-user-form-container">
+      </div>
+      <div class="container-lg" id="items-list">
+      </div>
     </div>
-    <div class="container mt-5 mb-5" id="add-recipe-button">
-    </div>
-    <div class="container mt-5 mb-5" id="add-user-button">
-    </div>
-    <div class="container-lg" id="add-recipe-form-container">
-    </div>
-    <div class="container-lg" id="add-user-form-container">
-    </div>
-    <div class="container-lg" id="items-list">
-    </div>
+  </main>
+  <div class="backToTop">
+    <a href="#top"><i class="fas fa-arrow-circle-up"></i></a>
   </div>
 
   <script src="/../js/cms/index.js"></script>
@@ -46,4 +50,3 @@
   <script src="/../js/cms/editUser.js"></script>
   <script src="/../js/cms/deleteRecipe.js"></script>
   <script src="/../js/cms/deleteUser.js"></script>
-  

@@ -17,42 +17,46 @@
   include __DIR__ . '/../header.php';
 
   ?>
-
-  <div class="recipes-parent-container">
-    <div class="container-fluid bg-yellow-light">
-      <h3 class="text-center mt-5 mb-5">Recipes with the preffered ingredient</h3>
-      <div class="container d-flex fluid mb-5" id="recipes">
-        <div class="row gap-3">
-          <?php foreach ($model as $recipe) { ?>
-            <div class="col">
-              <div class="card">
-                <img src="<?= ucfirst($recipe->getImagePath()) ?>" class="card-img-top"
-                  alt="Some image related to food">
-                <div class="card-body">
-                  <h5 class="card-title">
-                    <?= $recipe->getTitle() ?>
-                  </h5>
-                  <p class="card-text">
-                    <?= $recipe->getIngredients() ?>
-                  </p>
-                  <p class="card-text">
-                    <?= $recipe->getInstructions() ?>
-                  </p>
-                  <p class="card-text">
-                    <?= $recipe->getPrepTime() ?>
-                  </p>
-                  <p class="card-text">
-                    <?= $recipe->getCreator() ?>
-                  </p>
+  <main>
+    <div class="recipes-parent-container">
+      <div class="container-fluid bg-yellow-light">
+        <h3 class="text-center mt-5 mb-5">Recipes with the preffered ingredient</h3>
+        <div class="container d-flex fluid mb-5" id="recipes">
+          <div class="row gap-3">
+            <?php foreach ($model as $recipe) { ?>
+              <div class="col">
+                <div class="card">
+                  <img src="<?= ucfirst($recipe->getImagePath()) ?>" class="card-img-top"
+                    alt="Some image related to food">
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      <?= $recipe->getTitle() ?>
+                    </h5>
+                    <h5>Ingredients:</h5>
+                    <p class="card-text">
+                      <?= $recipe->getIngredients() ?>
+                    </p>
+                    <h5>Instructions:</h5>
+                    <p class="card-text">
+                      <?= $recipe->getInstructions() ?>
+                    </p>
+                    <h5>Preparation time:</h5>
+                    <p class="card-text">
+                      <?= $recipe->getPrepTime() ?>
+                    </p>
+                    <h5>Creator:</h5>
+                    <p class="card-text">
+                      <?= $recipe->getCreator() ?>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          <?php } ?>
+            <?php } ?>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
+  </main>
   <?php
   include __DIR__ . '/../footer.php';
   ?>
