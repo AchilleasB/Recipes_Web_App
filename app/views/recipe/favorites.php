@@ -24,8 +24,10 @@
     </div>
   </main>
   
+  
   <script type="module" src="../js/favorite/index.js"></script>
 
   <?php
+  include __DIR__ . '/../backToTop.php';
   include __DIR__ . '/../footer.php';
   ?>

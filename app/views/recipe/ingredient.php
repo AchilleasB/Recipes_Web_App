@@ -58,5 +58,6 @@
     </div>
   </main>
   <?php
+  include __DIR__ . '/../backToTop.php';
   include __DIR__ . '/../footer.php';
   ?>

@@ -27,5 +27,6 @@
   <script type="module" src="../js/recipe/index.js"></script>
 
   <?php
+  include __DIR__ . '/../backToTop.php';
   include __DIR__ . '/../footer.php';
   ?>
