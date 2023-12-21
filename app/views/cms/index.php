@@ -39,9 +39,10 @@
       </div>
     </div>
   </main>
-  <div class="backToTop">
-    <a href="#top"><i class="fas fa-arrow-circle-up"></i></a>
-  </div>
+  <?php
+  include __DIR__ . '/../backToTop.php';
+  include __DIR__ . '/../footer.php';
+  ?>
 
   <script src="/../js/cms/index.js"></script>
   <script src="/../js/cms/addRecipe.js"></script>
