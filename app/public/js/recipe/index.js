@@ -151,7 +151,7 @@ function htmlRecipeTitle(recipe) {
 
 function htmlRecipeIngredients(recipe) {
     const ingredientsSection = document.createElement('div');
-    ingredientsSection.classList.add('d-flex', 'flex-column', 'align-items-center', 'w-50', 'm-auto');
+    ingredientsSection.classList.add('ingredients-section','d-flex', 'flex-column', 'align-items-center', 'w-50', 'm-auto');
 
     const cardIngredientsTitle = document.createElement('h6');
     cardIngredientsTitle.classList.add('ingredients-title', 'mt-3', 'border-bottom');
@@ -169,7 +169,7 @@ function htmlRecipeIngredients(recipe) {
 
 function htmlRecipeInstructions(recipe) {
     const instructionsSection = document.createElement('div');
-    instructionsSection.classList.add('d-flex', 'flex-column', 'align-items-center', 'w-50', 'm-auto');
+    instructionsSection.classList.add('instructions-section','d-flex', 'flex-column', 'align-items-center', 'w-50', 'm-auto');
 
     const cardInstructionsTitle = document.createElement('h6');
     cardInstructionsTitle.classList.add('instructions-title', 'mt-3', 'border-bottom');

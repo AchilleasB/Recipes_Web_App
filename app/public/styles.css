@@ -1,4 +1,4 @@
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -38,16 +38,16 @@ nav {
 }
 
 .nav-right-side {
-    display: flex ;
+    display: flex;
     justify-content: right;
 }
 
 .nav-left-side {
-    display: flex ;
+    display: flex;
     justify-content: left;
 }
 
-.nav-item{
+.nav-item {
     font-size: 1.2rem;
 }
 
@@ -57,7 +57,7 @@ nav {
     margin: auto;
 }
 
-.home-title{
+.home-title {
     font-size: 2rem;
     font-weight: bold;
     margin: 10px 0;
@@ -79,7 +79,7 @@ nav {
 
 .card {
     background-color: #f2f2f2;
-    border: 2px solid  #eecda3;
+    border: 2px solid #eecda3;
     border-radius: 5px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     margin: 20px;
@@ -101,7 +101,7 @@ nav {
     font-size: 1.3rem;
     font-weight: bold;
     margin: 10px 0;
-    text-align: center; 
+    text-align: center;
 }
 
 .card-text {
@@ -136,7 +136,7 @@ nav {
 }
 
 footer {
-    
+
     box-sizing: border-box;
     width: 100%;
     background: linear-gradient(to right, #a770ef, #cf8bf3, #FDB99B);
@@ -152,9 +152,10 @@ footer .nav-link {
     margin-bottom: 20px;
 }
 
-body .login-container, .signup-container {
+body .login-container,
+.signup-container {
     width: 30%;
-    margin: 130px auto;   
+    margin: 130px auto;
 }
 
 .btn-group {
@@ -171,12 +172,12 @@ body .login-container, .signup-container {
 
 #add-user-form {
     width: 50%;
-    margin :0 auto;
+    margin: 0 auto;
 }
 
 #add-recipe-form {
     width: 50%;
-    margin :0 auto;
+    margin: 0 auto;
 }
 
 .recipe-card .card-image {
@@ -232,21 +233,28 @@ body .login-container, .signup-container {
         font-size: 1rem;
     }
 
-    .recipe-card-body {
+    .recipe-card {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-
     }
 
-    .recipe-card .card-image {
-        width: 50%;
-        height: 50%;
-
+    .recipe-card .left-container,
+    .recipe-card .right-container {
+        width: 75%;
+        margin: 10px 0;
     }
 
-    .recipe-card .card-details {
+    .recipe-card .right-container .ingredients-section,
+    .recipe-card .right-container .instructions-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 10px 0 !important;
+    }
+
+    .recipe-card .left-container img {
         width: 100%;
+        height: auto;
     }
+
 }
