@@ -37,7 +37,7 @@ class FavoriteRepository extends Repository
         }
     }
 
-    public  function getLoggedInUserFavoriteRecipesId($loggedInUserId){
+    public  function getFavoriteRecipesId($loggedInUserId){
         try {
             $stmt = $this->connection->prepare("SELECT recipe_id FROM favorites WHERE user_id = :user_id");
             $stmt->execute([
