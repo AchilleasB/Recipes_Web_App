@@ -16,11 +16,14 @@
   <?php
   include __DIR__ . '/../header.php';
 
+  if (isset($_SESSION['ingredient'])) {
+    $ingredient = $_SESSION['ingredient'];
+  }
   ?>
   <main>
     <div class="recipes-parent-container">
       <div class="container-fluid bg-yellow-light">
-        <h3 class="text-center mt-5 mb-5">Recipes with the preffered ingredient</h3>
+        <h4 class="text-center mt-5 mb-5">Recipes with <? echo $ingredient?></h4>
         <div class="container d-flex fluid mb-5" id="recipes">
           <div class="row gap-3">
             <?php foreach ($model as $recipe) { ?>
