@@ -72,8 +72,9 @@ class FavoritesController
             $this->favoriteService->removeFromFavorites($favorite);
             $message = 'Recipe was removed from favorites';
         }
+
         header('Content-Type: application/json');
-        echo json_encode(['message' => $message ]);
+        echo json_encode(['message' => $message, 'favorite' => $favorite ]);
     }
 
 }

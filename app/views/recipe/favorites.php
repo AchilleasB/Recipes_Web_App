@@ -15,7 +15,7 @@
 <body>
   <?php
   include __DIR__ . '/../header.php';
-  ?>
+?>
   <main>
     <div class="recipes-parent-container">
       <div class="container-fluid bg-yellow-light" id="recipes">
@@ -23,8 +23,8 @@
       </div>
     </div>
   </main>
-  
-  
+
+
   <script type="module" src="../js/favorite/index.js"></script>
 
   <?php

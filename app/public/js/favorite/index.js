@@ -32,6 +32,7 @@ export async function addToFavorites(recipeId, loggedInUserId) {
         })
     })
     const data = await response.json();
+    displayMessage(data.message, 3000);
     console.log(data);
 }
 
@@ -49,5 +50,25 @@ export async function removeFromFavorites(recipeId, loggedInUserId) {
     })
 
     const data = await response.json();
+    displayMessage(data.message, 3000);
     console.log(data);
+}
+
+function displayMessage(message, duration){
+    const messageContainer = document.createElement("div");
+    messageContainer.style.position = "fixed";
+    messageContainer.style.top = "50%";
+    messageContainer.style.left = "50%";
+    messageContainer.style.transform = "translate(-50%, -50%)";
+    messageContainer.style.background = "rgba(0, 0, 0, 0.7)";
+    messageContainer.style.color = "white";
+    messageContainer.style.padding = "10px";
+    messageContainer.style.borderRadius = "5px";
+    messageContainer.innerText = message;
+
+    document.body.appendChild(messageContainer);
+
+    setTimeout(() => {
+        document.body.removeChild(messageContainer);
+    }, duration);
 }

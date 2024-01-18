@@ -14,25 +14,26 @@ document.addEventListener("DOMContentLoaded", function () {
     loadItems(recipesAPIendpoint, "recipes");
     htmlAddRecipeButton();
 
+    recipesRadioButtons.addEventListener("click", function () {
+        loadItems(recipesAPIendpoint, "recipes");
+        htmlAddRecipeButton();
+        addUserButtonContainer.innerHTML = null;
+        addUserFormContainer.innerHTML = null;
+        addRecipeFormContainer.innerHTML = null;
+    
+    });
+    
+    usersRadioButtons.addEventListener("click", function () {
+        loadItems(usersAPIendpoint, "users");
+        htmlAddUserButton();
+        addRecipeButtonContainer.innerHTML = null;
+        addRecipeFormContainer.innerHTML = null;
+        addUserFormContainer.innerHTML = null;
+    
+    });
+
 });
 
-recipesRadioButtons.addEventListener("click", function () {
-    loadItems(recipesAPIendpoint, "recipes");
-    htmlAddRecipeButton();
-    addUserButtonContainer.innerHTML = null;
-    addUserFormContainer.innerHTML = null;
-    addRecipeFormContainer.innerHTML = null;
-
-});
-
-usersRadioButtons.addEventListener("click", function () {
-    loadItems(usersAPIendpoint, "users");
-    htmlAddUserButton();
-    addRecipeButtonContainer.innerHTML = null;
-    addRecipeFormContainer.innerHTML = null;
-    addUserFormContainer.innerHTML = null;
-
-});
 
 async function loadItems(apiEndpoint, itemType) {
     itemsListContainer.innerHTML = "";
