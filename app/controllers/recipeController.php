@@ -43,7 +43,8 @@ class RecipeController extends Controller
     public function ingredient()
     {
         if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ingredient'])){
-            $ingredient = $_POST['ingredient'];
+            $ingredient = htmlspecialchars($_POST['ingredient']);
+            $_SESSION['ingredient'] = $ingredient;
             $recipes = $this->recipeService->getRecipesByIngredient($ingredient);
         }
 
