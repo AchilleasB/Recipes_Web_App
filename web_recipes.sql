@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Nov 15, 2023 at 11:44 AM
+-- Generation Time: Jan 19, 2024 at 09:23 PM
 -- Server version: 11.0.3-MariaDB-1:11.0.3+maria~ubu2204
 -- PHP Version: 8.2.9
 
@@ -64,12 +64,11 @@ CREATE TABLE `favorites` (
 INSERT INTO `favorites` (`id`, `user_id`, `recipe_id`) VALUES
 (3, 8, 15),
 (4, 8, 17),
-(21, 53, 12),
-(22, 53, 6),
-(23, 53, 21),
-(43, 4, 1),
-(44, 4, 17),
-(45, 4, 21);
+(67, 3, 6),
+(68, 3, 23),
+(98, 4, 1),
+(99, 4, 17),
+(101, 4, 21);
 
 -- --------------------------------------------------------
 
@@ -99,7 +98,7 @@ INSERT INTO `recipes` (`id`, `title`, `ingredients`, `instructions`, `creator`, 
 (4, 'Nicoise Salad', '1 head of lettuce, 2 cans of tuna, 4 hard-boiled eggs, 1/2 cup Niçoise olives, 1/2 pound green beans, 4 small potatoes, 1/4 cup red wine vinegar, 1/2 cup olive oil', '1. Chop the lettuce into bite-sized pieces. 2. Cook the green beans until tender, then slice them in half. 3. Boil the potatoes until cooked through, then slice them into thin rounds. 4. Arrange the lettuce on a plate, then add the green beans and potatoes. 5. Top with the tuna, sliced hard-boiled eggs, and Niçoise olives. 6. Mix the red wine vinegar and olive oil together to make the dressing. 7. Drizzle the dressing over the salad.', 'Mary Williams', '45 minutes', 1, '/../images/nicoiseSalad.png'),
 (5, 'Waldorf Salad', '2 Apples, 1/2 Celery, 5 Walnuts, 10gr Raisins, 5gr Mayonnaise, 10 ml Lemon juice, 1 dash Salt', '1. Dice the apples and place in a large bowl. 2. Dice the celery and add to the bowl. 3. Chop the walnuts and add to the bowl. 4. Add the raisins to the bowl. 5. In a separate bowl, mix together the mayonnaise, lemon juice, and salt. 6. Pour the mayonnaise mixture over the apple mixture and stir to mix. 7. Serve chilled.', 'Emily Davis', '15 min', 1, '/../images/waldorfSalad.png'),
 (6, 'Spaghetti Carbonara', 'spaghetti, pancetta, eggs, parmesan cheese, garlic, black pepper', '1. Cook spaghetti in a pot of boiling salted water until al dente. 2. In a separate pan, cook pancetta until crispy. 3. In a bowl, whisk together eggs, parmesan cheese, garlic, and black pepper. 4. Drain spaghetti and add to the pan with pancetta. 5. Turn off the heat and add the egg mixture, stirring quickly to coat the spaghetti. 5. Serve immediately.', 'Chef John', '30 minutes', 2, '/../images/carbonaraPasta.png'),
-(7, 'Pesto Pasta Salad', 'pasta, pesto sauce, cherry tomatoes, mozzarella cheese, black olives', '1. Cook pasta according to package directions. 2. In a large bowl, mix together cooked pasta, pesto sauce, cherry tomatoes, mozzarella cheese, and black olives. 3. Serve chilled or at room temperature.', 'Giada De Laurentiis', '25 minutes', 2, '/../images/pestoPasta.png'),
+(7, 'Pesto Pasta', 'pasta, pesto sauce, cherry tomatoes, mozzarella cheese, black olives', '1. Cook pasta according to package directions. 2. In a large bowl, mix together cooked pasta, pesto sauce, cherry tomatoes, mozzarella cheese, and black olives. 3. Serve chilled or at room temperature.', 'Giada De Laurentiis', '25 minutes', 2, '/../images/pestoPasta.png'),
 (8, 'Linguine with Clams', 'linguine, clams, garlic, white wine, butter, parsley', '1. Cook linguine in a pot of boiling salted water until al dente. 2. In a separate pan, sauté garlic in butter until fragrant. 3. Add clams and white wine, cover the pan, and cook until clams open. 4. Drain linguine and add to the pan with clams. 5. Toss with parsley and serve immediately.', 'Ina Garten', '35 minutes', 2, '/../images/clamsPasta.png'),
 (9, 'Fettuccine Alfredo', 'fettuccine, heavy cream, parmesan cheese, butter, garlic, nutmeg', '1. Cook fettuccine in a pot of boiling salted water until al dente. 2. In a separate pan, heat heavy cream and butter until melted. 3. Add parmesan cheese, garlic, and nutmeg, and stir until the sauce is smooth. 4. Drain fettuccine and add to the pan with the sauce. 5. Serve immediately.', 'Gordon Ramsay', '20 minutes', 2, '/../images/alfredoPasta.png'),
 (10, 'Pasta alla Norma', 'pasta, eggplant, tomato sauce, garlic, basil, ricotta salata', '1. Cook pasta in a pot of boiling salted water until al dente. 2. In a separate pan, sauté garlic and eggplant until golden brown. 3. Add tomato sauce and basil, and simmer until the sauce thickens. 4. Drain pasta and add to the pan with the sauce. 5. Top with crumbled ricotta salata and serve immediately.', 'Mario Batali', '40 minutes', 2, '/../images/normaPasta.png'),
@@ -118,7 +117,10 @@ INSERT INTO `recipes` (`id`, `title`, `ingredients`, `instructions`, `creator`, 
 (23, 'Chocolate Brownies', '1 cup unsalted butter, 2 1/4 cups granulated sugar, 4 large eggs, 1 1/4 cups cocoa powder, 1 teaspoon salt, 1 teaspoon baking powder, 1 teaspoon espresso powder, 1 tablespoon vanilla extract, 1 1/2 cups all-purpose flour, 2 cups semisweet chocolate chips', 'Preheat oven to 350 degrees F. Line a 9x13 inch baking pan with parchment paper. In a large mixing bowl, melt butter in the microwave. Add sugar and whisk to combine. Add eggs, one at a time, whisking after each addition. Add cocoa powder, salt, baking powder, espresso powder, and vanilla extract; whisk to combine. Add flour and stir until just combined. Fold in chocolate chips. Pour mixture into prepared pan. Bake for 30-35 minutes or until a toothpick inserted in the center comes out with moist crumbs. Allow to cool completely in pan on a wire rack before cutting into squares.', 'David Lee', '45 minutes', 5, '/../images/browniesDessert.png'),
 (24, 'Chocolate Chip Cookies', '2 1/4 cups all-purpose flour, 1 tsp baking soda, 1 tsp salt, 1 cup unsalted butter, 3/4 cup white sugar, 3/4 cup brown sugar, 2 eggs, 2 tsp vanilla extract, 2 cups semisweet chocolate chips', '1. Preheat oven to 375°F (190°C). 2. Sift together the flour, baking soda, and salt. 3. Cream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla. Gradually blend in the sifted ingredients. Stir in the chocolate chips. 4. Drop dough by rounded tablespoonfuls onto ungreased cookie sheets. 5. Bake for 8 to 10 minutes in the preheated oven, or until golden. Allow cookies to cool on baking sheet for 5 minutes before removing to a wire rack to cool completely.', 'John Smith', '45 minutes', 5, '/../images/cookiesDessert.png'),
 (25, 'Peanut Butter Cups', '1 cup creamy peanut butter, 1/2 cup unsalted butter, 1/4 cup brown sugar, 1 3/4 cups powdered sugar, 2 cups semisweet chocolate chips', '1. Line a muffin tin with 12 paper liners. 2. Melt the peanut butter and butter together in a saucepan over medium heat. 3. Stir in the brown sugar and powdered sugar until smooth. 4. Remove from heat. 5. Spoon the peanut butter mixture into the paper liners, filling each about 1/2 full. 6. Melt the chocolate chips in a double boiler or in the microwave. 7. Pour the melted chocolate over the peanut butter mixture, covering the peanut butter completely. 8. Chill in the refrigerator for at least 1 hour before serving.', 'Mike Johnson', '1 hour and 15 minutes', 5, '/../images/peanutCupsDessert.png'),
-(81, 'Squirrel Man', 'squirrel, pine', 'chop the squirrel', 'Achil', '60 minutes', 4, '/../images/castorman.jpeg');
+(81, 'Squirrel Steak', 'squirrel, pine', 'chop the squirrel', 'Achilleas', '60 minutes', 4, '/../images/castorman.jpeg'),
+(106, 'Melanas zomos', 'a kjd nakj', 'a akj skja ', 'Mariw', '12 minutes', 1, '/../images/Amazon-Brazil.jpg'),
+(107, 'Kota Lyrati', ' akj JDs', 'na mna b', 'Achil', '45 minutes', 4, '/../images/Mexivo-Playa-del-Carmen-Maya.jpg'),
+(109, 'Kimadopita', 'jdsnjkan da', 'kj ncakjaf', 'Constantine', '45 minutes', 1, '/../images/Costa-Rica-1.jpg');
 
 -- --------------------------------------------------------
 
@@ -143,9 +145,7 @@ INSERT INTO `users` (`id`, `name`, `password`, `email`, `role`) VALUES
 (4, 'Achil', '$2y$10$f5eHo/idedZ95c51zHqLZOaCZROBiyoJlQx6F0LovCmNQo41ORO.K', 'achil@email.com', 'admin'),
 (5, 'Thor', '$2y$10$hJatRg9zS1uljhTnEhdIDuxnjZ7qSEfy.oTTc6bwpIWK10dJPUq7K', 'thor@email.com', 'user'),
 (8, 'Hulk', '$2y$10$nLpMSBlv/j0gy74jTTN0TubZZSiOLQLW1Fk9bWxvNv6tF4BhlEBLm', 'hulk@email.com', 'user'),
-(53, 'Maria', '$2y$10$kJY8LvF1m9tVOo8nn.GMSOQjkON/1H2uRcZWcY3Q4hRoqqkYUvzVe', 'maria@email.com', 'admin'),
-(58, 'Ariadni-Eleni', '$2y$10$2ka8pAoqXjGACK9LKdkT8Oeo1rsExvqwjbjjNMkp.yTtuWv81Wgue', 'ariel@email.com', 'user'),
-(60, 'Odin', '$2y$10$P72F534.SlwEyjplF/yOWOv6i9IHBPvKoAy.RblG21FZBu3.1I562', 'odin@email.com', 'user');
+(118, 'Odin', '$2y$10$KNY2fvhhLPLfZWEKpsiOMuANccu5jH2RVeeZiaGY8karSLmz6mG1G', 'odin@email.com', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -192,19 +192,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `favorites`
 --
 ALTER TABLE `favorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- Constraints for dumped tables
