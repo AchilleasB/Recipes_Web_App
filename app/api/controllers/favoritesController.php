@@ -58,19 +58,20 @@ class FavoritesController
         $favorite = new Favorite();
         $favorite->setRecipeId($object->recipe_id);
         $favorite->setUserId($object->user_id);
+        $recipe_title = $this->favoriteService->getFavRecipeTitle($object->recipe_id);
 
         if ($request_type == 'POST') {
             if (!$this->favoriteService->existsInFavorites($favorite)) {
                 $this->favoriteService->addToFavorites($favorite);
-                $message = 'Recipe was added to favorites';
+                $message = $recipe_title. ' was added to favorites';
             }else{
-                $message = 'Recipe already exists in favorites';
+                $message = $recipe_title.' already exists in favorites';
             }
         }
 
         if ($request_type == 'DELETE') {
             $this->favoriteService->removeFromFavorites($favorite);
-            $message = 'Recipe was removed from favorites';
+            $message = $recipe_title.' was removed from favorites';
         }
 
         header('Content-Type: application/json');

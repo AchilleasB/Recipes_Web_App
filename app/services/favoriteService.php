@@ -25,8 +25,8 @@ class FavoriteService
     {
         $recipes = array();
         foreach ($favorites as $favorite) {
-            $recipeId = $favorite->getRecipeId();
-            $recipe = $this->favoriteRepository->getFavoriteRecipe($recipeId);
+            $recipe_id = $favorite->getRecipeId();
+            $recipe = $this->favoriteRepository->getFavoriteRecipe($recipe_id);
             if ($recipe) {
                 array_push($recipes, $recipe);
             }
@@ -34,6 +34,12 @@ class FavoriteService
         return $recipes;
     }
 
+    public function getFavRecipeTitle($recipe_id)
+    {
+        $recipe = $this->favoriteRepository->getFavoriteRecipe($recipe_id);
+        return $recipe[0]->getTitle();
+    }
+    
     public function addToFavorites($favorite)
     {
         return $this->favoriteRepository->addToFavorites($favorite);
