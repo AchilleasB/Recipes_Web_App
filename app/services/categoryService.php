@@ -16,17 +16,4 @@ class CategoryService
         return $this->categoryRepository->getAllCategories();
     }
 
-    public function addCategory($category)
-    {
-        return $this->categoryRepository->addCategory($category);
-    }
-
-    public function deleteCategory($id)
-    {
-        return $this->categoryRepository->deleteCategory($id);
-    }
-
-
 }
-
-?>

@@ -5,21 +5,6 @@ require __DIR__ . '/../models/recipe.php';
 
 class FavoriteRepository extends Repository
 {
-    public function getAllFavoriteRecipesData(){
-        try {
-            $stmt = $this->connection->prepare("SELECT id, user_id, recipe_id FROM favorites");
-            $stmt->execute();
-
-            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Favorite');
-            $favorites = $stmt->fetchAll();
-
-            return $favorites;
-
-        } catch (PDOException $e) {
-            echo $e;
-        }
-    }
-
     public function getFavoriteRecipe($recipe_id){
         try {
             $stmt = $this->connection->prepare("SELECT id, title, ingredients, instructions, creator, prep_time, image_path, category_id FROM recipes WHERE id = :recipe_id");
