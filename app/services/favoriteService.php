@@ -16,9 +16,9 @@ class FavoriteService
         return $this->favoriteRepository->getAllFavoriteRecipesData();
     }
 
-    public function getFavoriteRecipesId($loggedInUserId)
+    public function getFavoritesData($loggedInUserId)
     {
-        return $this->favoriteRepository->getFavoriteRecipesId($loggedInUserId);
+        return $this->favoriteRepository->getFavoritesData($loggedInUserId);
     }
 
     public function getUserFavoriteRecipes($favorites)

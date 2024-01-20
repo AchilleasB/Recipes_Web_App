@@ -25,9 +25,9 @@ class FavoritesController
                 exit();
             }
 
-            // recipe id and user id are fields in favorites database table 
-            // access the favorites data using the user id and get the recipe data using the recipe id
-            $favorites = $this->favoriteService->getFavoriteRecipesId($loggedInUserId);
+            // retrieve a list of favorites for the logged in user
+            $favorites = $this->favoriteService->getFavoritesData($loggedInUserId);
+            // access the user's favorite recipes based on the retrieved recipe ids in list of favorites
             $recipes = $this->favoriteService->getUserFavoriteRecipes($favorites);
 
             header('Content-Type: application/json');
