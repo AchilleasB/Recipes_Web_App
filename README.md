@@ -1,6 +1,15 @@
+# The following credentials provide access to the application as administrator
+email: achil@email.com
+password: achil1234
+
+or
+
+email: odin@email.com
+password: odin1234
+
 # WEB DEVELOPMENT 1 PROJECT
 
-Welcome to the Recipe App, a platform for exploring and managing awesome recipes. Dive into a world of culinary delights with diverse recipe categories: Salads, Pasta, Fish, Meat, and Desserts.
+Welcome to the Recipe App, a platform for exploring and managing awesome recipes. Dive into a world of culinary delights with diverse recipe categories such as salads, pasta, fish, meat, and desserts.
 
 ## Features
 User-Friendly Navigation:
@@ -27,8 +36,6 @@ Create, read, update, and delete recipes effortlessly.
 User Management:
 Manage user accounts with the ability to create, update, and delete user profiles.
 User password modification is not permitted.
-
-
 
 
 # Docker template for PHP projects
