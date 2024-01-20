@@ -21,5 +21,3 @@ class CategoryRepository extends Repository
         }
     }
 }
-
-?>

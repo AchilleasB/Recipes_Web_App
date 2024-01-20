@@ -17,6 +17,5 @@ class CmsController extends Controller {
     public function index(){ 
         $this->displayView($this);
     }
-
     
 }

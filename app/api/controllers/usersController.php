@@ -88,4 +88,3 @@ class UsersController
         echo json_encode(['message' => $message, 'user' => $object]);
     }
 }
-?>

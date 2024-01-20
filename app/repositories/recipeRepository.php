@@ -118,5 +118,3 @@ class RecipeRepository extends Repository
 
 
 }
-
-?>

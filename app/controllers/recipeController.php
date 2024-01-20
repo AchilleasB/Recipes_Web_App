@@ -51,6 +51,4 @@ class RecipeController extends Controller
         $this->displayView($recipes);
         
     }
-
 }
-?>
