@@ -1,0 +1,37 @@
+name: Build and Deploy to Heroku
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Build Docker image
+        run: |
+          docker build \
+            --build-arg DB_SERVERNAME=$DB_SERVERNAME \
+            --build-arg DB_USERNAME=$DB_USERNAME \
+            --build-arg DB_PASSWORD=$DB_PASSWORD \
+            --build-arg DB_DATABASE=$DB_DATABASE \
+            -t Recipes_Web_App .
+
+      - name: Log in to Heroku Container Registry
+        run: echo "${{ secrets.HEROKU_API_KEY }}" | docker login --username=_ --password-stdin registry.heroku.com
+
+      - name: Tag Docker image
+        run: docker tag your-app-name registry.heroku.com/your-app-name/web
+
+      - name: Push Docker image to Heroku Container Registry
+        run: docker push registry.heroku.com/Recipes_Web_App/web
+
+      - name: Release Docker image to Heroku
+        run: heroku container:release web --app Recipes_Web_App
+
+
