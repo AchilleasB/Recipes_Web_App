@@ -26,7 +26,7 @@ jobs:
         run: echo "${{ secrets.HEROKU_API_KEY }}" | docker login --username=_ --password-stdin registry.heroku.com
 
       - name: Tag Docker image
-        run: docker tag your-app-name registry.heroku.com/your-app-name/web
+        run: docker tag Recipes_Web_App registry.heroku.com/Recipes_Web_App/web
 
       - name: Push Docker image to Heroku Container Registry
         run: docker push registry.heroku.com/Recipes_Web_App/web
