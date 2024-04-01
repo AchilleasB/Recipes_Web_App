@@ -20,18 +20,15 @@ jobs:
             --build-arg DB_USERNAME=$DB_USERNAME \
             --build-arg DB_PASSWORD=$DB_PASSWORD \
             --build-arg DB_DATABASE=$DB_DATABASE \
-            -t Recipes_Web_App .
+            -t recipes_web_app .
 
       - name: Log in to Heroku Container Registry
         run: echo "${{ secrets.HEROKU_API_KEY }}" | docker login --username=_ --password-stdin registry.heroku.com
 
-      - name: Tag Docker image
-        run: docker tag Recipes_Web_App registry.heroku.com/Recipes_Web_App/web
-
       - name: Push Docker image to Heroku Container Registry
-        run: docker push registry.heroku.com/Recipes_Web_App/web
+        run: docker push registry.heroku.com/recipes_web_app/web
 
       - name: Release Docker image to Heroku
-        run: heroku container:release web --app Recipes_Web_App
+        run: heroku container:release web --app recipes_web_app
 
 
