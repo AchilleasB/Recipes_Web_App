@@ -6,7 +6,13 @@ class Repository
 
     function __construct()
     {
-        require __DIR__ . '/../config/dbconfig.php';
+        // require __DIR__ . '/../config/dbconfig.php';
+
+        // Retrieve database connection parameters from environment variables
+        $servername = getenv('DB_SERVERNAME');
+        $username = getenv('DB_USERNAME');
+        $password = getenv('DB_PASSWORD');
+        $database = getenv('DB_DATABASE');
 
         try {
             $this->connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
